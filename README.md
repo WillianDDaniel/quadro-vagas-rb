@@ -44,8 +44,6 @@ Plataforma moderna para gerenciamento e publicação de vagas de emprego, desenv
 
 3. Quando o VS Code detectar o arquivo `.devcontainer`, clique em "Reopen in Container" na notificação.
 
-   ![Reopen in Container](https://raw.githubusercontent.com/microsoft/vscode-dev-containers/main/docs/assets/reopen-in-container.png)
-
    Alternativamente:
    - Pressione `F1`
    - Digite "Dev Containers: Open Folder in Container"
