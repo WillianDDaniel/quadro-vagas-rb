@@ -45,10 +45,18 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Rspec for Rails [https://github.com/rspec/rspec-rails]
+  gem "rspec-rails"
+
+  # Capybara for integration testing [https://github.com/teamcapybara/capybara]
+  gem "capybara"
+
+  # Cuprite for headless browser testing [https://github.com/rubycdp/cuprite]
+  gem "cuprite"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 end
-
