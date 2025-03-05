@@ -32,6 +32,7 @@ jobs:
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
+          ruby-version: '3.4.2'
           bundler-cache: true
 
       - name: Set up database schema
@@ -49,7 +50,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: '3.4.2'
           bundler-cache: true
 
       - name: Lint code for consistent style
