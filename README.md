@@ -75,7 +75,7 @@ bin/rubocop -a                     # Corrige automaticamente problemas simples
 
 | Tecnologia | Versão | Propósito |
 |------------|--------|-----------|
-| Ruby | 3.3.2 | Linguagem de programação |
+| Ruby | 3.4.2 | Linguagem de programação |
 | Rails | 8.0.1 | Framework web |
 | PostgreSQL | 16 | Banco de dados |
 | StimulusJS | 1.3.4 | Interatividade front-end |
