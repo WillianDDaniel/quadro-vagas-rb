@@ -7,7 +7,7 @@ FactoryBot.define do
     salary_period { :monthly }
     work_arrangement { :remote }
     job_type { create(:job_type) }
-    experience_level { create(:experience_level) }
+    association :experience_level
     job_location { "City, Country" }
     description { "Something" }
   end

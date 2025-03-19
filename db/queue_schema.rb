@@ -247,6 +247,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_18_175335) do
     t.integer "role", default: 0
     t.string "name"
     t.string "last_name"
+    t.integer "status", default: 0, null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 

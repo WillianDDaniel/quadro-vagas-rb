@@ -28,7 +28,7 @@ describe "Visitor sees job postings", type: :system do
   end
 
   it "and cant see inactive job postings" do
-    first_user = create(:user, status: :active)
+    first_user = create(:user, status: :active, name: "Some name")
     first_company = create(:company_profile, name: "Ruby on cloud", website_url: "http://rubyoncloud.com", contact_email: "contact@rubyoncloud.com", user: first_user)
     second_user = create(:user, email_address: 'second@user.com', status: :inactive)
     second_company = create(:company_profile, name: "Microsoft", website_url: "http://microsoft.com", contact_email: "contact@microsoft.com", user: second_user)
