@@ -1,0 +1,50 @@
+pt-BR:
+  bulk_imports:
+    statuses:
+      pending: "Pendente"
+      processing: "Processando"
+      completed: "Concluído"
+      failed: "Falhou"
+    create:
+      success: "Arquivo importado com sucesso"
+      failure: "Erro ao importar arquivo"
+    new:
+      title: "Upload em Massa"
+      description: "Faça upload de arquivos para importar usuários, empresas e vagas de uma vez."
+      file_upload:
+        label:
+          text: "Arraste e solte ou"
+          link: "envie um arquivo"
+          accepted_formats: "Formatos aceitos: arquivos (.txt ou .csv)"
+      file_format:
+        title: "Formato do Arquivo"
+        description: "Cada linha deve começar com:"
+        items:
+          - "(U) para Usuários"
+          - "(E) para Empresas"
+          - "(V) para Vagas"
+      submit: "Importar"
+    progress:
+      title: "Status do Processamento"
+      import_started: "Importação iniciada em %{time}"
+      lines_remaining: "Linhas Restantes"
+      processed_lines: "Linhas Processadas"
+      successful_records: "Registros com Sucesso"
+      failed_records: "Erros Encontrados"
+      concluded: "Concluido"
+    errors:
+      last_errors: "Últimos erros detectados"
+      total: "Total"
+      line: "Linha"
+      not_found_errors: "Nenhum erro registrado até o momento"
+    report:
+      title: "Relatório de Importação - ID: %{id}"
+      creation_date: "📅 Data de Criação: %{created_at}"
+      file_name: "📂 Arquivo Importado: %{file_name}"
+      total_records: "📊 Total de Registros: %{total_records}"
+      success_records: "✅ Registros Sucesso: %{success_records}"
+      error_records: "❌ Registros com Erro: %{error_records}"
+      processed_records: "📦 Registros Processados: %{processed_records}"
+      final_status: "🔄 Status Final: %{status}"
+      errors_header: "Erros Encontrados:"
+      line: "Linha %{line_number}"

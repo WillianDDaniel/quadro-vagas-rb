@@ -1,0 +1,6 @@
+pt-BR:
+  process_bulk_imports:
+    unknown_type: 'Tipo de linha desconhecido: %{record_indicator}'
+    invalid_user_format: 'Formato inválido para usuário'
+    invalid_company_format: 'Formato inválido para empresa'
+    invalid_job_format: 'Formato inválido para vaga de emprego'
