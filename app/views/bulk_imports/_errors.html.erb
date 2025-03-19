@@ -1,0 +1,46 @@
+<div id="errors" class="border-t border-gray-200 px-6 py-5 mt-5">
+  <div class="flex items-center justify-between mb-4">
+    <h4 class="text-sm font-bold text-gray-700 flex items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+      </svg>
+      <%= t(".last_errors")%>
+    </h4>
+    <span class="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full font-medium">
+      <%= t(".total")%>: <%= bulk_import.error_records %>
+    </span>
+  </div>
+
+  <div class="space-y-2 max-h-48 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+    <% bulk_import.import_errors.last(5).each do |error| %>
+      <div class="px-2.5 py-2 bg-red-50 border border-red-100 rounded-lg group hover:bg-red-100 transition-colors">
+        <div class="flex justify-between items-start">
+          <div class="flex-1">
+            <div class="text-sm font-medium text-red-700">
+              <%= t(".line")%> <%= error.line_number %>: <%= truncate(error.error_message, length: 50) %>
+            </div>
+            <div class="text-xs text-red-600 mt-1 font-mono opacity-90 bg-red-50 p-1 rounded">
+              <%= truncate(error.line_content, length: 40) %>
+            </div>
+          </div>
+          <button class="h-6 w-6 text-red-400 ml-2 flex-shrink-0 hover:text-red-600 transition-colors" title="Ver detalhes">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if bulk_import.import_errors.none? %>
+    <div class="p-4 text-center border border-gray-100 rounded-lg bg-gray-50">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto text-green-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <p class="text-sm text-gray-600">
+        <%= t(".not_found_errors")%>
+      </p>
+    </div>
+  <% end %>
+</div>

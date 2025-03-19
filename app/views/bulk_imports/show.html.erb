@@ -1,0 +1,33 @@
+<%= turbo_stream_from "bulk_import_#{@bulk_import.id}" %>
+
+<div class="min-h-screen w-full max-w-6xl mx-auto py-8">
+  <div>
+    <div class="mb-6 text-center">
+      <h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">
+        Importação em Massa
+      </h1>
+      <p class="mt-2 text-sm text-gray-600">
+        Acompanhe em tempo real o processamento da sua importação
+      </p>
+    </div>
+
+    <div class="bg-white shadow-xl rounded-xl border border-gray-200 overflow-hidden">
+      <%= render partial: "bulk_imports/progress", locals: { bulk_import: @bulk_import } %>
+
+      <%= render partial: "bulk_imports/errors", locals: { bulk_import: @bulk_import } %>
+    </div>
+
+    <div class="mt-8 text-center">
+      <%= link_to download_report_bulk_import_path(@bulk_import), class: "inline-flex items-center px-4 py-2 border border-transparent
+        rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700
+        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" do %>
+
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        Exportar Relatório
+
+      <% end %>
+    </div>
+  </div>
+</div>

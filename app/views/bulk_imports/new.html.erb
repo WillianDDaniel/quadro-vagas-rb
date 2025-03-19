@@ -1,0 +1,47 @@
+<%= form_with model: @bulk_import, class: "w-full my-6 max-w-6xl mx-auto" do |f| %>
+  <div class="bg-white shadow-lg rounded-xl px-8 pt-6 pb-8 mb-6" >
+    <h2 class="text-2xl font-bold text-gray-800 mb-2"><%= t('.title') %></h2>
+    <p class="text-gray-600 mb-6"><%= t('.description') %></p>
+
+    <div class="w-full" data-controller="imports">
+      <%= f.file_field :file, class: "hidden", data: { imports_target: "input" } %>
+      <%= f.label :file,
+        data: { imports_target: "dropZone" },
+        class: "w-full relative flex flex-col items-center gap-4 px-3
+          py-8 text-sm font-medium text-center transition-colors border
+          border-dashed rounded cursor-pointer border-slate-300 hover:bg-slate-50" do %>
+
+        <span class="inline-flex items-center self-center justify-center h-12 px-3 rounded-full bg-slate-100/70 text-slate-400">
+          <svg xmlns="http://www.w3.org/2000/svg" aria-label="File input icon" role="graphics-symbol" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3-3 3M6.75 19.5a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z" />
+          </svg>
+        </span>
+        <span class="text-slate-500">
+          <%= t('.file_upload.label.text') %>
+          <span class="text-emerald-500"><%= t('.file_upload.label.link') %></span>
+        </span>
+        <p class="text-xs text-gray-500 mt-1"><%= t('.file_upload.label.accepted_formats') %></p>
+      <% end %>
+      <div data-imports-target="fileName" class="hidden mt-4"></div>
+    </div>
+
+    <div class="bg-blue-50 rounded-lg p-4 my-6">
+      <h3 class="font-medium text-blue-800 mb-1"><%= t('.file_format.title') %></h3>
+      <p class="text-sm text-blue-700"><%= t('.file_format.description') %></p>
+      <ul class="text-sm text-blue-700 mt-2 space-y-1 ml-5 list-disc">
+        <% t('.file_format.items').each do |item| %>
+          <li><%= item %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="flex justify-center">
+      <%= f.submit t('.submit'),
+        class: "hover:cursor-pointer flex w-full items-center justify-center
+          h-12 gap-2 px-6 text-sm font-medium tracking-wide text-white transition
+          duration-300 rounded focus-visible:outline-none whitespace-nowrap
+          bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700" %>
+    </div>
+
+  </div>
+<% end %>

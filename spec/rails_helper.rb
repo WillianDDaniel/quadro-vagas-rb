@@ -51,6 +51,8 @@ RSpec.configure do |config|
             })
   end
 
+  config.include ActiveJob::TestHelper, type: :job
+
   include FactoryBot::Syntax::Methods
 
   config.use_transactional_fixtures = true
