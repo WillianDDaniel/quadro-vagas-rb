@@ -1,0 +1,7 @@
+pt-BR:
+  users:
+    show:
+      active: 'Ativo'
+      disabled: 'Desativado'
+      activate: 'Ativar usuário'
+      deactivate: 'Desativar usuário'

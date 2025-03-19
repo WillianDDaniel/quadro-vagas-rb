@@ -1,0 +1,5 @@
+en:
+  home:
+    index:
+      no_jobs_found: 'No jobs found'
+      no_jobs_available: 'There are no job postings available right now.'

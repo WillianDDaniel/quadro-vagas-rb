@@ -48,6 +48,20 @@ RSpec.describe CompanyProfile, type: :model do
     end
   end
 
+  context 'status' do
+    it "should be active if user is active" do
+      user = create(:user, status: :active)
+      company = create(:company_profile, user: user)
+      expect(company.status).to eq("active")
+    end
+
+    it "should be inactive if user is inactive" do
+      user = create(:user, status: :inactive)
+      company = create(:company_profile, user: user)
+      expect(company.status).to eq("inactive")
+    end
+  end
+
   describe '#format' do
     context 'email' do
       it { should allow_value('user@example.com').for(:contact_email) }

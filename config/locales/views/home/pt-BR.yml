@@ -1,0 +1,5 @@
+pt-BR:
+  home:
+    index:
+      no_jobs_found: 'Nenhuma vaga encontrada.'
+      no_jobs_available: 'Nenhuma vaga disponível no momento.'

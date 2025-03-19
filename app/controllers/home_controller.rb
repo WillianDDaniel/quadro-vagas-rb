@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   allow_unauthenticated_access
   def index
-    @job_postings = JobPosting.all
+    @job_postings = JobPosting.active
   end
 
   def search

@@ -1,25 +1,27 @@
 # Delete all records from the database
+User.delete_all
 CompanyProfile.delete_all
 JobPosting.delete_all
 JobType.delete_all
 ExperienceLevel.delete_all
+
+# Creates three regular users
+3.times do |n|
+  User.create!(name: "User #{n}th", last_name: "Doe", email_address: "#{n}th@email.com", password: "password123", password_confirmation: "password123", role: :regular)
+end
+
+# Creates one admin
+User.create!(name: 'Admin', last_name: 'Admin', email_address: 'admin@email.com', password: 'password123', password_confirmation: "password123", role: :admin)
 
 # Creates three job types
 [ "Full Time", "Part Time", "Freelance" ].each do |job_type_name|
   JobType.create!(name: job_type_name)
 end
 
+# Creates four experience levels
 [ "Intern", "Junior", "Mid level", "Senior" ].each do |experience_level|
   ExperienceLevel.create!(name: experience_level)
 end
-
-# Creates three users
-3.times do |n|
-  User.create!(name: "User #{n}th", last_name: "Doe", email_address: "#{n}th@email.com", password: "password123", password_confirmation: "password123")
-end
-
-# Creates one admin
-User.create!(name: 'Admin', last_name: 'Admin', email_address: 'admin@email.com', password: 'password123', password_confirmation: "password123", role: :admin)
 
 # Creates three company profiles
 3.times do |n|

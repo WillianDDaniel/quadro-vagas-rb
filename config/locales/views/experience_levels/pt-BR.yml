@@ -1,8 +1,4 @@
 pt-BR:
-  home:
-    index:
-      no_jobs_found: 'Nenhuma vaga encontrada.'
-      no_jobs_available: 'Nenhuma vaga disponível no momento.'
   experience_levels:
     index:
       add: Adicionar
@@ -17,7 +13,3 @@ pt-BR:
       title: Editar Nível de Experiência
     form:
       submit: Salvar
-  shared:
-    _navbar:
-      placeholder_search: 'Pesquise aqui...'
-      experience_levels: 'Níveis de Experiência'

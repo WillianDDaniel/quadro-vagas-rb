@@ -20,6 +20,10 @@ class JobPosting < ApplicationRecord
   enum :salary_period, { daily: 0, weekly: 10, monthly: 20, yearly: 30 }
   enum :work_arrangement, { remote: 0, hybrid: 10, in_person: 20 }
 
+  delegate :status, to: :company_profile
+
+  scope :active, -> { includes(company_profile: :user).where(users: { status: "active" }) }
+
   validates :title, :salary, :salary_currency, :salary_period, :company_profile, :work_arrangement, :description, presence: true
   validates :job_location, presence: true, if: -> { in_person? || hybrid? }
 end

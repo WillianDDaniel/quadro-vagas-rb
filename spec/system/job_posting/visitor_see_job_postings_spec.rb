@@ -27,6 +27,20 @@ describe "Visitor sees job postings", type: :system do
     expect(page).not_to have_content("Nenhuma vaga disponível no momento.")
   end
 
+  it "and cant see inactive job postings" do
+    first_user = create(:user, status: :active)
+    first_company = create(:company_profile, name: "Ruby on cloud", website_url: "http://rubyoncloud.com", contact_email: "contact@rubyoncloud.com", user: first_user)
+    second_user = create(:user, email_address: 'second@user.com', status: :inactive)
+    second_company = create(:company_profile, name: "Microsoft", website_url: "http://microsoft.com", contact_email: "contact@microsoft.com", user: second_user)
+    create(:job_posting, title: "Dev Rails", description: "Software Developer", company_profile: first_company)
+    create(:job_posting, title: "Dev Node", company_profile: second_company)
+
+    visit root_path
+
+    expect(page).to have_content("Dev Rails")
+    expect(page).not_to have_content("Dev Node")
+  end
+
   it "and there are no job postings" do
     visit root_path
 

@@ -1,0 +1,7 @@
+en:
+  users:
+    show:
+      active: 'Active'
+      disabled: 'Disabled'
+      activate: 'Activate user'
+      deactivate: 'Deactivate user'

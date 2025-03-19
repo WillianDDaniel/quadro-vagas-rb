@@ -1,0 +1,21 @@
+pt-BR:
+  activerecord:
+    models:
+      user:
+        one: Usuário
+        other: Usuários
+    attributes:
+      user:
+        email_address: E-mail
+        name: Nome
+        last_name: Sobrenome
+        password: Senha
+        password_confirmation: Confirmação de Senha
+        created_at: Criado em
+        role: Cargo
+        roles:
+          admin: Administrador
+          regular: Regular
+        statuses:
+          active: Ativo
+          inactive: Inativo

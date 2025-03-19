@@ -1,0 +1,38 @@
+<div class="w-full overflow-x-auto">
+  <table class="w-full text-left rounded w-overflow-x-auto " cellspacing="0">
+    <tbody>
+      <tr>
+        <th scope="col" class="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100"><%= User.human_attribute_name(:name) %></th>
+        <th scope="col" class="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100"><%= User.human_attribute_name(:last_name) %></th>
+        <th scope="col" class="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100"><%= User.human_attribute_name(:email_address) %></th>
+        <th scope="col" class="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100"><%= User.human_attribute_name(:role) %></th>
+        <th scope="col" class="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100"><%= User.human_attribute_name(:status) %></th>
+        <th scope="col" class="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100"><%= User.human_attribute_name(:created_at) %></th>
+        <th scope="col" class="h-12 px-6 text-sm font-medium stroke-slate-700 text-slate-700 bg-slate-100"></th>
+      </tr>
+      <% @users.each do |user| %>
+        <tr>
+          <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500"><%= user.name %></td>
+          <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500"><%= user.last_name %></td>
+          <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500"><%= user.email_address %></td>
+          <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500"><%= User.human_enum_name('role', user.role) %></td>
+          <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 <%= user.active? ? "text-green-500" : "text-red-500" %>"><%= User.human_enum_name('status', user.status) %></td>
+          <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500"><%= l user.created_at, format: :long %></td>
+          <td class="h-12 px-6 text-sm transition duration-300 border-slate-200 stroke-slate-500 text-slate-500">
+            <% if user.active? %>
+              <%= button_to image_tag('disable.svg', class: 'w-5 h-5'), toggle_status_user_path(user), method: :patch, 
+  class: "cursor-pointer py-2 px-4 font-medium text-slate-700 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none border border-slate-200 hover:border-slate-300 focus:border-slate-300 rounded-md",
+  title: "Desativar usuário"
+            %>
+            <% else %>
+              <%= button_to image_tag('activate.svg', class: 'w-5 h-5'), toggle_status_user_path(user), method: :patch, 
+  class: "cursor-pointer py-2 px-4 font-medium text-slate-700 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none border border-slate-200 hover:border-slate-300 focus:border-slate-300 rounded-md",
+  title: "Ativar usuário"
+            %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

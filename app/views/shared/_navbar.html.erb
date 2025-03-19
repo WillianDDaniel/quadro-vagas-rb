@@ -5,12 +5,11 @@
       <a href="<%= root_path %>" aria-label="Quadro de Vagas logo" aria-current="page" class="flex items-center gap-2 py-3 text-lg whitespace-nowrap focus:outline-none lg:flex-1">
         Quadro de Vagas
       </a>
-    
 
       <%= form_with url: search_jobs_path, method: :get do |form| %>
         <div class="relative my-6">
           <%= form.label "search_input", class: "hidden" %>
-          <%= form.search_field :query, value: params[:query], placeholder: t('shared._navbar.placeholder_search'), class: "relative w-full h-12 px-4 pr-12 transition-all border-b outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400" %>
+          <%= form.search_field :query, value: params[:query], placeholder: t('.placeholder_search'), class: "relative w-full h-12 px-4 pr-12 transition-all border-b outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400" %>
           <button id="search_button" type="submit" class="absolute w-6 h-6 cursor-pointer top-3 right-4 stroke-slate-400 peer-disabled:cursor-not-allowed">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true" aria-label="Search icon" role="graphics-symbol">
               <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -18,8 +17,7 @@
           </button>
         </div>
       <% end %>
-  
-      
+
       <!-- End Plain large search input -->
 
       <!-- Mobile trigger -->
@@ -33,16 +31,15 @@
       <!-- Navigation links -->
       <ul role="menubar" aria-label="Select page" class="invisible absolute top-0 left-0 z-[-1] ml-auto h-screen w-full justify-center overflow-hidden overflow-y-auto overscroll-contain bg-white/90 px-8 pb-12 pt-28 font-medium opacity-0 transition-[opacity,visibility] duration-300 lg:visible lg:relative lg:top-0 lg:z-0 lg:flex lg:h-full lg:w-auto lg:items-stretch lg:overflow-visible lg:bg-white/0 lg:px-0 lg:py-0 lg:pt-0 lg:opacity-100">
         <li role="none" class="flex items-stretch">
-          <a role="menuitem" aria-haspopup="false" class="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8" > <span>Home</span></a>
+          <%= link_to 'Home', root_path, class:"flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8", role:"menuitem", aria: { 'haspopup':"false" } %>
+
         </li>
-        
-      </ul>
+
         <div class="flex items-center gap-4">
         <% if authenticated? %>
           <li role="none" class="flex items-stretch">
             <% if Current.user.admin? %>
               <%= link_to t('shared._navbar.experience_levels'), experience_levels_path, class:"flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8 hover:cursor-pointer", role:"menuitem", aria: { 'haspopup':"false" } %>
-              <%= link_to t('.bulk_import'), new_bulk_import_path, class:"flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8 hover:cursor-pointer", role:"menuitem", aria: { 'haspopup':"false" } %>
             <% end %>
             <% if Current.user.company_profile %>
               <%= link_to t('.company_profile'), company_profile_path(Current.user.company_profile), class:"flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8 hover:cursor-pointer", role:"menuitem", aria: { 'haspopup':"false" } %>
@@ -51,13 +48,15 @@
             <% end %>
           </li>
 
-          <%= link_to t("shared.navbar.new_job_post"), new_job_posting_path, class: "py-4 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none focus-visible:outline-none lg:px-8"%>
-          <%= button_to t("shared.navbar.sign_out"), session_path, method: :delete, class: "cursor-pointer py-2 px-4 font-medium text-slate-700 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none border border-slate-200 hover:border-slate-300 focus:border-slate-300 rounded-md" %>
-        <% else %>
-          <%= link_to t("shared.navbar.sign_in"), new_session_path, class: "cursor-pointer py-2 px-4 font-medium text-slate-700 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none border border-slate-200 hover:border-slate-300 focus:border-slate-300 rounded-md" %>
-          <%= link_to t("shared.navbar.sign_up"), new_registration_path, class: "cursor-pointer py-2 px-4 font-medium text-slate-700 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none border border-slate-200 hover:border-slate-300 focus:border-slate-300 rounded-md" %>
-        <% end %>
-      </div>
+            <%= button_to t("shared.navbar.sign_out"), session_path, method: :delete, class: "cursor-pointer py-2 px-4 font-medium text-slate-700 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none border border-slate-200 hover:border-slate-300 focus:border-slate-300 rounded-md" %>
+          <% else %>
+            <!-- When unauthenticated -->
+            <%= link_to t("shared.navbar.sign_in"), new_session_path, class: "cursor-pointer py-2 px-4 font-medium text-slate-700 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none border border-slate-200 hover:border-slate-300 focus:border-slate-300 rounded-md" %>
+            <%= link_to t("shared.navbar.sign_up"), new_registration_path, class: "cursor-pointer py-2 px-4 font-medium text-slate-700 transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600 focus:outline-none border border-slate-200 hover:border-slate-300 focus:border-slate-300 rounded-md" %>
+          <% end %>
+        </div>
+
+      </ul>
     </nav>
   </div>
 </header>

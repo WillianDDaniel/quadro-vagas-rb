@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_18_175335) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_11_170530) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -130,6 +130,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_18_175335) do
     t.integer "role", default: 0
     t.string "name"
     t.string "last_name"
+    t.integer "status", default: 0, null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 

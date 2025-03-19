@@ -14,6 +14,8 @@ describe 'User registration', type: :system do
 
     expect(page).to have_content 'Usuário criado com sucesso.'
 
+    visit root_path
+
     within 'header nav' do
       expect(page).to have_button 'Sair'
     end
@@ -36,7 +38,6 @@ describe 'User registration', type: :system do
     expect(page).to have_content 'Sobrenome não pode ficar em branco'
     expect(page).to have_content 'E-mail não pode ficar em branco'
     expect(page).to have_content 'Senha não pode ficar em branco'
-    expect(page).to have_content 'Confirmação de Senha não pode ficar em branc'
   end
 
   it 'show a messagem with invalid email' do

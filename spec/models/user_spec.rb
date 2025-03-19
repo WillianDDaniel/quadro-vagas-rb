@@ -7,7 +7,12 @@ RSpec.describe User, type: :model do
       it { should validate_presence_of(:last_name) }
       it { should validate_presence_of(:email_address) }
       it { should validate_presence_of(:password) }
-      it { should validate_presence_of(:password_confirmation) }
+
+      it "validates presence of password_confirmation only when password is present" do
+        user = build(:user, password: "password", password_confirmation: nil)
+        expect(user).not_to be_valid
+        expect(user.errors[:password_confirmation]).to include("não pode ficar em branco")
+      end
     end
 
     context 'uniqueness' do
@@ -38,10 +43,33 @@ RSpec.describe User, type: :model do
 
   describe 'enum' do
     it { should define_enum_for(:role).with_values(regular: 0, admin: 10) }
+    it { should define_enum_for(:status).with_values(active: 0, inactive: 1) }
 
     it "has default role as costumer" do
       user = User.new
       expect(user.role).to eq("regular")
     end
+
+    it "has default status as active" do
+      user = User.new
+      expect(user.status).to eq("active")
+    end
   end
+
+  describe "#toggle_active!" do
+  it "deactivates an active user" do
+    user = build(:user)
+
+    user.toggle_status!
+    expect(user.reload.status).to eq "inactive"
+  end
+
+  it "activates a deactivated user" do
+    user = build(:user)
+    user.status = :inactive
+
+    user.toggle_status!
+    expect(user.reload.status).to eq "active"
+  end
+end
 end
