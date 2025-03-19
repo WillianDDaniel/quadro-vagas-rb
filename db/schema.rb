@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_11_170530) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_18_175335) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -53,6 +53,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_11_170530) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bulk_imports", force: :cascade do |t|
+    t.integer "status", default: 0
+    t.integer "total_records", default: 0
+    t.integer "processed_records", default: 0
+    t.integer "success_records", default: 0
+    t.integer "error_records", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "company_profiles", force: :cascade do |t|
     t.string "name"
     t.string "website_url"
@@ -68,6 +78,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_11_170530) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
+  end
+
+  create_table "import_errors", force: :cascade do |t|
+    t.text "error_message"
+    t.integer "line_number"
+    t.text "line_content"
+    t.bigint "bulk_import_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bulk_import_id"], name: "index_import_errors_on_bulk_import_id"
   end
 
   create_table "job_postings", force: :cascade do |t|
@@ -116,6 +136,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_11_170530) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "company_profiles", "users"
+  add_foreign_key "import_errors", "bulk_imports"
   add_foreign_key "job_postings", "company_profiles"
   add_foreign_key "job_postings", "experience_levels"
   add_foreign_key "job_postings", "job_types"

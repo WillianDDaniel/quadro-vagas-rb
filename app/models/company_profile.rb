@@ -3,7 +3,7 @@ class CompanyProfile < ApplicationRecord
 
   has_one_attached :logo
 
-  validates :name, :website_url, :contact_email, :logo, presence: true
+  validates :name, :website_url, :contact_email, presence: true
   validates :contact_email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i }
   validates :website_url, format: { with: /\Ahttps?:\/\/([a-z0-9\-]+\.)+[a-z]{2,6}\z/i, message: I18n.t("errors.messages.invalid_url_format") }
   validates :user, :contact_email, uniqueness: true
@@ -12,6 +12,8 @@ class CompanyProfile < ApplicationRecord
 
   private
   def logo_image_type
+    return if self.logo.blank?
+
     allowed_types = [ "image/png", "image/jpeg", "image/jpg" ]
 
     errors.add(:logo, I18n.t("errors.messages.invalid_image_format")) unless self.logo.content_type.in?(allowed_types)
